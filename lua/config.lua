@@ -5,6 +5,7 @@ config.plugins = {
     { "ellisonleao/gruvbox.nvim" },
     { "ayu-theme/ayu-vim" },
     { "tiagovla/tokyodark.nvim" },
+    { "bluespada/justblack.vim" },
 }
 -- colorscheme
 config.colorscheme = 'gruvbox'
