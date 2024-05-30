@@ -51,7 +51,13 @@ load.core = {
             'stevearc/dressing.nvim', -- optional for vim.ui.select
         },
     },
-    { 'Exafunction/codeium.vim', requires = { 'nvim-lua/plenary.nvim', 'hrsh7th/nvim-cmp' }}
+    { 'Exafunction/codeium.vim', requires = { 'nvim-lua/plenary.nvim', 'hrsh7th/nvim-cmp' }},
+    -- transparent
+    { 'xiyaowong/transparent.nvim', config = function()
+        require 'transparent'.setup {  } 
+        -- set transparent on start
+        vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
+    end }
 }
 
 
