@@ -56,7 +56,7 @@ load.core = {
     { 'xiyaowong/transparent.nvim', config = function()
         require 'transparent'.setup {  } 
         -- set transparent on start
-        vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
+        -- vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
     end }
 }
 
