@@ -6,7 +6,7 @@ config.plugins = {
     { "ayu-theme/ayu-vim" },
     { "tiagovla/tokyodark.nvim" },
     { "bluespada/justblack.vim" },
-    { "wakatime/vim-wakatime" },
+    -- { "wakatime/vim-wakatime" },
 }
 -- colorscheme
 config.colorscheme = 'tokyodark'
