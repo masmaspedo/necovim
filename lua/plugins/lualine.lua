@@ -4,19 +4,17 @@
 -- Edited: Bluespada
 local lualine = require 'lualine'
 
--- Color table for highlights
 local colors = {
-    bg = '#202328',
-    fg = '#bbc2cf',
-    yellow = '#ECBE7B',
-    cyan = '#008080',
-    darkblue = '#081633',
-    green = '#98be65',
-    orange = '#FF8800',
-    violet = '#a9a1e1',
-    magenta = '#c678dd',
-    blue = '#51afef',
-    red = '#ec5f67'
+  black        = '#282828',
+  white        = '#ebdbb2',
+  red          = '#fb4934',
+  green        = '#b8bb26',
+  blue         = '#83a598',
+  yellow       = '#fe8019',
+  gray         = '#a89984',
+  darkgray     = '#3c3836',
+  lightgray    = '#504945',
+  inactivegray = '#7c6f64',
 }
 
 local conditions = {
@@ -124,8 +122,8 @@ ins_left {
         }
         vim.api.nvim_command(
             'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()])
-        -- return ' ' .. mode_name[vim.fn.mode()] .. " MODE"
-        return '🐱 ' .. mode_name[vim.fn.mode()] .. " MODE"
+        return ' ' .. mode_name[vim.fn.mode()] .. " MODE"
+        -- return '🐱 ' .. mode_name[vim.fn.mode()] .. " MODE"
     end,
     color = "LualineMode",
     left_padding = 0
@@ -225,12 +223,12 @@ ins_right {
         return format_file_size(file)
     end,
     condition = conditions.buffer_not_empty,
-    -- icon = ''
-    icon = '💾'
+    icon = ''
+    -- icon = '💾'
 }
 
--- ins_right { 'location', icon = '﫴' }
-ins_right { 'location', icon = '📍' }
+ins_right { 'location', icon = '﫴' }
+-- ins_right { 'location', icon = '📍' }
 
 ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 

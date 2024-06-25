@@ -103,7 +103,7 @@ cmp.setup {
 
     sources = cmp.config.sources(
         {
-            { name = 'codeium' },
+            -- { name = 'codeium' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
             -- { name = 'vsnip' },
@@ -220,14 +220,15 @@ end
 
 require 'lspsaga'.setup({
     ui = {
+        -- beacon eanble
         -- currently only round theme
         theme = 'round',
         -- this option only work in neovim 0.9
         title = true,
         devicon = true,
-        lines = { '┗', '┣', '┃', '━', '┏' },
+        -- lines = { '┗', '┣', '┃', '━', '┏' },
         -- border type can be single,double,rounded,solid,shadow.
-        border = 'single',
+        border = 'rounded',
         winblend = 0,
         expand = '',
         collapse = '',
