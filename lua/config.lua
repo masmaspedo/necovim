@@ -10,8 +10,8 @@ config.plugins = {
     -- { "wakatime/vim-wakatime" },
 }
 -- colorscheme
-config.colorscheme = 'gruvbox'
 
+config.colorscheme = 'gruvbox'
 config.init = function()
     -- custom configuration here
     --require'tokyodark'.setup{
@@ -31,10 +31,37 @@ config.init = function()
     vim.g.gruvbox_italic = true
     vim.g.gruvbox_transparent_bg = false
     vim.g.gruvbox_contrast_dark = "medium"
-    vim.g.ayu = "mirage"
+    -- vim.g.ayu = "mirage"
     vim.cmd([[autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE]])
+    -- configuration for neovide
+    if vim.g.neovide then
+        -- set fontsize of neovide
+        vim.o.guifont = "MonoLisa Nerd Font Mono:h11.5"
+        -- set text gamma
+        vim.g.neovide_text_gamma = 0.10
+        vim.g.neovide_text_contrast = 0.8
+        -- set scaling factor
+        vim.g.neovide_scale_factor = 0.95
+        -- set style like background and etc
+        local alpha = function()
+            return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+        end
+        vim.g.transparency = 0.95
+        vim.g.neovide_transparency = 0.95
+        vim.g.neovide_underline_stroke_scale = 1.0
+        -- set neovide refresh rate
+        vim.g.neovide_refresh_rate = 144
+        vim.g.neovide_refresh_rate_idle = 1
+        -- set cursor
+        vim.g.neovide_cursor_unfocused_outline_width = 0.5
+        vim.g.neovide_cursor_trail_size = 0.845
+        vim.g.neovide_cursor_antialiasing = true
+        -- animate
+        vim.g.neovide_cursor_animate_in_insert_mode = true
+        vim.g.neovide_cursor_smooth_blink = true
+        vim.g.noevide_cursor_vfx_mode = "ripple"
+    end
 end
-
 -- termguicolor
 config.termguicolors = true
 
@@ -57,7 +84,7 @@ config.nowrap = true
 -- map is regular neovim keymap bind
 -- wmap is a whichkeymap
 config.keybind = function(map, wmap)
-    -- nerd Tree shortcuts
+    -- nerd Tree shortcut
     map('n', '<leader>nt', ':NvimTreeToggle<CR>', { silent = true, noremap = true })
     map('n', '<leader>nf', ':NvimTreeFocus<CR>', { silent = true, noremap = true })
     map('n', '<leader>nc', ':NvimTreeClose<CR>', { silent = true, noremap = true })
@@ -113,4 +140,10 @@ config.keybind = function(map, wmap)
     map('n', '<leader>;', ':ToggleTerm <CR>', { silent = true, noremap = true })
     -- Tagbar
     map('n', '<leader>tb', ':TagbarToggle <CR>', { silent = true, noremap = true })
+
+    -- set keybind for copy and paste on neovide
+    if vim.g.neovide then
+        map('i', '<C-S-V>', '"+p <CR>', { silent = true, noremap = true })
+        map('i', '<C-S-C>', '"+y <CR>', { silent = true, noremap = true })
+    end
 end
