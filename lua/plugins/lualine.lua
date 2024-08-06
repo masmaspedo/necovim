@@ -122,8 +122,8 @@ ins_left {
         }
         vim.api.nvim_command(
             'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()])
-        return ' ' .. mode_name[vim.fn.mode()] .. " MODE"
-        -- return '🐱 ' .. mode_name[vim.fn.mode()] .. " MODE"
+        -- return ' ' .. mode_name[vim.fn.mode()] .. " MODE"
+        return '🐱 ' .. mode_name[vim.fn.mode()] .. " MODE"
     end,
     color = "LualineMode",
     left_padding = 0
@@ -223,12 +223,12 @@ ins_right {
         return format_file_size(file)
     end,
     condition = conditions.buffer_not_empty,
-    icon = ''
-    -- icon = '💾'
+    -- icon = ''
+    icon = '💾'
 }
 
-ins_right { 'location', icon = '﫴' }
--- ins_right { 'location', icon = '📍' }
+-- ins_right { 'location', icon = '﫴' }
+ins_right { 'location', icon = '📍' }
 
 ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 

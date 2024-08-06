@@ -8,9 +8,11 @@ config.plugins = {
     { "bluespada/justblack.vim" },
     -- { 'Exafunction/codeium.vim', requires = { 'nvim-lua/plenary.nvim', 'hrsh7th/nvim-cmp' }},
     -- { "wakatime/vim-wakatime" },
+    { "Djancyp/better-comments.nvim", config = function()
+        require('better-comment').Setup()
+    end },
 }
 -- colorscheme
-
 config.colorscheme = 'gruvbox'
 config.init = function()
     -- custom configuration here
