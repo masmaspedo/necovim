@@ -9,33 +9,32 @@ config.plugins = {
     -- { 'Exafunction/codeium.vim', requires = { 'nvim-lua/plenary.nvim', 'hrsh7th/nvim-cmp' }},
     -- { "wakatime/vim-wakatime" },
     { "Djancyp/better-comments.nvim", config = function()
-        require('better-comment').Setup()
     end },
 }
 -- colorscheme
 config.colorscheme = 'gruvbox'
 config.init = function()
-    -- custom configuration here
+    -- NOTE: custom configuration here
     --require'tokyodark'.setup{
-        --transparent_background = false, -- set background to transparent
-        --gamma = 1.00, -- adjust the brightness of the theme
-        --styles = {
-            --comments = { italic = true }, -- style for comments
-            --keywords = { italic = true }, -- style for keywords
-            --identifiers = { italic = true }, -- style for identifiers
-            --functions = {}, -- style for functions
-            --variables = {}, -- style for variables
-        --},
-        --custom_highlights = {} or function(highlights, palette) return {} end, -- extend highlights
-        --custom_palette = {} or function(palette) return {} end, -- extend palette
-        --terminal_colors = true, -- enable terminal colors
+    --transparent_background = false, -- set background to transparent
+    --gamma = 1.00, -- adjust the brightness of the theme
+    --styles = {
+    --comments = { italic = true }, -- style for comments
+    --keywords = { italic = true }, -- style for keywords
+    --identifiers = { italic = true }, -- style for identifiers
+    --functions = {}, -- style for functions
+    --variables = {}, -- style for variables
+    --},
+    --custom_highlights = {} or function(highlights, palette) return {} end, -- extend highlights
+    --custom_palette = {} or function(palette) return {} end, -- extend palette
+    --terminal_colors = true, -- enable terminal colors
     --}
     vim.g.gruvbox_italic = true
     vim.g.gruvbox_transparent_bg = false
     vim.g.gruvbox_contrast_dark = "medium"
     -- vim.g.ayu = "mirage"
     vim.cmd([[autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE]])
-    -- configuration for neovide
+    -- NOTE: configuration for neovide
     if vim.g.neovide then
         -- set fontsize of neovide
         vim.o.guifont = "MonoLisa Nerd Font Mono:h11.5"
@@ -63,6 +62,50 @@ config.init = function()
         vim.g.neovide_cursor_smooth_blink = true
         vim.g.noevide_cursor_vfx_mode = "ripple"
     end
+
+    -- NOTE: this is configuration for better comments
+    local bc = require 'better-comment'
+    bc.Setup {
+        -- TODO : set custom tags
+        tags = {
+            {
+                name = "TODO",
+                fg = "#fbf1c7",
+                bg = "#458588",
+                bold = true,
+                virtual_text = "",
+            },
+            {
+                name = "FIX",
+                fg = "#fbf1c7",
+                bg = "#cc241d",
+                bold = true,
+                virtual_text = "",
+            },
+            {
+                name = "BUG",
+                fg = "#fbf1c7",
+                bg = "#fb4934",
+                bold = true,
+                virtual_text = "",
+            },
+            {
+                name = "NOTE",
+                fg = "#fbf1c7",
+                bg = "#689d62",
+                bold = true,
+                virtual_text = "",
+            },
+            {
+                name = "WARNING",
+                fg = "#fbf1c7",
+                bg = "#d79921",
+                bold = true,
+                virtual_text = "",
+            },
+        }
+    }
+
 end
 -- termguicolor
 config.termguicolors = true

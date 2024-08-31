@@ -16,7 +16,7 @@ return {
         require 'plugins.tagbar'
         require 'plugins.toggleterms'
         require 'plugins.treesitter'
-        require 'plugins.whichkey'
+        -- require 'plugins.whichkey'
         require 'plugins.codeium'
         require 'plugins.nvim-ts-autotag'
     end
