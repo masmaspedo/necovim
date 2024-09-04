@@ -56,7 +56,9 @@ load.core = {
         require 'transparent'.setup {  } 
         -- set transparent on start
         -- vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
-    end }
+    end },
+    -- add zen mode
+    { 'folke/zen-mode.nvim' },
 }
 
 

@@ -19,5 +19,6 @@ return {
         -- require 'plugins.whichkey'
         require 'plugins.codeium'
         require 'plugins.nvim-ts-autotag'
+        require 'plugins.zen'
     end
 }
