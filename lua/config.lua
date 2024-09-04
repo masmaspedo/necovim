@@ -10,10 +10,17 @@ config.plugins = {
     -- { "wakatime/vim-wakatime" },
     { "Djancyp/better-comments.nvim", config = function()
     end },
+    { "nobbmaestro/nvim-andromeda", requires = { "tjdevries/colorbuddy.nvim", branch = "dev" } },
 }
 -- colorscheme
-config.colorscheme = 'gruvbox'
+config.colorscheme = 'andromeda'
 config.init = function()
+    -- NOTE: MY CUSTOM CONFIGURATION THEME DEFAULT WILL USE ANDROMEDA THEME
+    local andromeda = require 'andromeda'
+    
+    andromeda.setup {
+    }
+
     -- NOTE: custom configuration here
     --require'tokyodark'.setup{
     --transparent_background = false, -- set background to transparent
