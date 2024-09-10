@@ -4,10 +4,6 @@ require 'which-key'.setup {
             enable = true
         }
     },
-    window = {
-        border = "shadow",
-        position = "bottom",
-    },
     key_label = {
         ["<space>"] = "SPC",
         ["<cr>"] = "RET",
