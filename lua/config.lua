@@ -11,15 +11,12 @@ config.plugins = {
     { "Djancyp/better-comments.nvim", config = function()
     end },
     { "nobbmaestro/nvim-andromeda", requires = { "tjdevries/colorbuddy.nvim", branch = "dev" } },
+    { "joshdick/onedark.vim" }
 }
 -- colorscheme
-config.colorscheme = 'andromeda'
+config.colorscheme = 'onedark'
 config.init = function()
     -- NOTE: MY CUSTOM CONFIGURATION THEME DEFAULT WILL USE ANDROMEDA THEME
-    local andromeda = require 'andromeda'
-    
-    andromeda.setup {
-    }
 
     -- NOTE: custom configuration here
     --require'tokyodark'.setup{

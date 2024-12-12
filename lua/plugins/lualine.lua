@@ -4,17 +4,30 @@
 -- Edited: Bluespada
 local lualine = require 'lualine'
 
+--local colors = {
+  --black        = '#282828',
+  --white        = '#ebdbb2',
+  --red          = '#fb4934',
+  --green        = '#b8bb26',
+  --blue         = '#83a598',
+  --yellow       = '#fe8019',
+  --gray         = '#a89984',
+  --darkgray     = '#3c3836',
+  --lightgray    = '#504945',
+  --inactivegray = '#7c6f64',
+--}
+
 local colors = {
-  black        = '#282828',
-  white        = '#ebdbb2',
-  red          = '#fb4934',
-  green        = '#b8bb26',
-  blue         = '#83a598',
-  yellow       = '#fe8019',
-  gray         = '#a89984',
-  darkgray     = '#3c3836',
-  lightgray    = '#504945',
-  inactivegray = '#7c6f64',
+  black        = '#282c34',  -- One Dark's primary background color
+  white        = '#abb2bf',  -- Lighter text color
+  red          = '#e06c75',  -- One Dark red
+  green        = '#98c379',  -- One Dark green
+  blue         = '#61afef',  -- One Dark blue
+  yellow       = '#e5c07b',  -- One Dark yellow
+  gray         = '#5c6370',  -- One Dark gray
+  darkgray     = '#2c323c',  -- Darker background color
+  lightgray    = '#3e4451',  -- Light gray text color
+  inactivegray = '#4b5263',  -- Dimmed elements or inactive UI elements
 }
 
 local conditions = {
@@ -33,7 +46,7 @@ local config = {
         -- Disable sections and component separators
         component_separators = "",
         section_separators = { left = "", right = "" },
-        theme = 'auto',
+        theme = 'onedark',
     },
     sections = {
         -- these are to remove the defaults
@@ -122,8 +135,8 @@ ins_left {
         }
         vim.api.nvim_command(
             'hi! LualineMode guifg=' .. mode_color[vim.fn.mode()])
-        -- return ' ' .. mode_name[vim.fn.mode()] .. " MODE"
-        return '🐱 ' .. mode_name[vim.fn.mode()] .. " MODE"
+        return '󰄛 ' .. mode_name[vim.fn.mode()] .. " MODE"
+        -- return '🐱 ' .. mode_name[vim.fn.mode()] .. " MODE"
     end,
     color = "LualineMode",
     left_padding = 0
@@ -224,13 +237,16 @@ ins_right {
     end,
     condition = conditions.buffer_not_empty,
     -- icon = ''
-    icon = '💾'
+    -- icon = '💾'
+    icon = '󰆓'
 }
 
 -- ins_right { 'location', icon = '﫴' }
-ins_right { 'location', icon = '📍' }
+-- ins_right { 'location', icon = '📍' }
 
-ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+ins_right { 'location', icon = '' }
+
+ins_right { 'progress', icon = '󱪖', color = { fg = colors.fg, gui = 'bold' } }
 
 
 ins_right {
