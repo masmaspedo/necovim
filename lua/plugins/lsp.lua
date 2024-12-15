@@ -119,7 +119,7 @@ cmp.setup {
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "    [" .. (strings[2] or "") .. ")"
+            kind.menu = "    [" .. (strings[2] or "") .. "]"
             return kind
         end,
     },
@@ -137,10 +137,10 @@ cmp.setup {
             { name = 'look', keyword_length = 2, option = { convert_case = true, loud = false } }
         }
     ),
-    -- view = {
+    view = {
         -- entries = 'native'
-        -- entries = { name = 'custom', selection_order = 'near_cursor' }
-    -- },
+        entries = { name = 'custom', selection_order = 'near_cursor' }
+    },
 }
 
 cmp.setup.cmdline('/', {
@@ -149,15 +149,15 @@ cmp.setup.cmdline('/', {
         { name = 'buffer' }
     },
     view = {
-        entries = { name = 'wildmenu', separator = '|' }
+        entries = { name = 'custom', selection_order = 'near_cursor' }
     }
 })
 
 cmp.setup.cmdline(':', {
-    completion = { autocomplete = false },
     sources = cmp.config.sources({ { name = 'path' }, { name = 'cmdline' } }),
     view = {
-        entries = { name = 'native', separator = '|' }
+        -- entries = { name = 'native', separator = '|' }
+        entries = { name = 'custom', selection_order = 'near_cursor' }
     }
 })
 
