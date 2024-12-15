@@ -29,7 +29,10 @@ load.core = {
     { 'ray-x/lsp_signature.nvim' }, -- lsp signature
     { 'khaveesh/vim-fish-syntax' }, -- fish shell highlighting
     { 'vimwiki/vimwiki' }, -- wiki plugins use as notes
-    { 'lukas-reineke/indent-blankline.nvim' }, -- indent blank line
+    { 
+        'lukas-reineke/indent-blankline.nvim', 
+        -- requires = { 'HiPhish/rainbow-delimiters.nvim' }
+    }, -- indent blank line
     { 'matze/vim-move' }, -- move line
     { 'francoiscabrol/ranger.vim' }, -- vim ranger
     { 'jghauser/mkdir.nvim', config = function() require 'mkdir' end }, -- makedir when folder not exist

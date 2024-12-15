@@ -97,26 +97,26 @@ cmp.setup {
                 with_text = true,
                 mode = "symbol_text",
                 menu = ({
+                    buffer = "[Buffer]",
                     nvim_lsp = "[LSP]",
                     luasnip = "[LuaSnip]",
                     nvim_lua = "[Lua]",
                     latex_symbols = "[Latex]",
-                    buffer = "[Buffer]",
                 }),
                 maxwidth = 64,
                 maxheight = 10,
                 before = function(entry, vim_item)
                     vim_item.menu = ({
+                        buffer = "[Buffer]",
                         nvim_lsp = "[LSP]",
                         luasnip = "[LuaSnip]",
                         nvim_lua = "[Lua]",
                         latex_symbols = "[Latex]",
-                        buffer = "[Buffer]",
                     })[entry.source.name]
                     return vim_item
                 end
             })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            local strings = vim.split(kind.kind, "%s", { trimempty = false })
             kind.kind = " " .. (strings[1] or "") .. " "
             kind.menu = "    (" .. (strings[2] or "") .. ")"
             return kind
@@ -161,6 +161,7 @@ cmp.setup.cmdline(':', {
         entries = { name = 'native', separator = '|' }
     }
 })
+
 local resolved = nil
 local function get_kind(colors)
     if resolved then
@@ -252,19 +253,20 @@ require 'lspsaga'.setup({
         border = 'rounded',
         winblend = 0,
         expand = '',
-        collapse = '',
+        collapse = '  ',
         preview = ' ',
-        code_action = '',
-        code_action_prompt = { enable = false },
+        code_action = ' ',
+        actionfix = '󱢇 ',
+        code_action_prompt = { enable = true },
         -- code_action = '💡',
-        diagnostic = '🐞',
+        diagnostic = '  ',
         incoming = ' ',
         outgoing = ' ',
-        -- colors = {
+        colors = {
             --float window normal background color
-            --normal_bg = '#282828',
-            --black = '#1c1c19',
-        -- },
+            normal_bg = '#282828',
+            black = '#1c1c19',
+        },
         breadcrumbs = {
             enable = false,
         },
