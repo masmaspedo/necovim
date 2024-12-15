@@ -11,32 +11,21 @@ config.plugins = {
     { "Djancyp/better-comments.nvim", config = function()
     end },
     { "nobbmaestro/nvim-andromeda", requires = { "tjdevries/colorbuddy.nvim", branch = "dev" } },
-    { "joshdick/onedark.vim" }
+    { "navarasu/onedark.nvim" }
 }
 -- colorscheme
 config.colorscheme = 'onedark'
 config.init = function()
     -- NOTE: MY CUSTOM CONFIGURATION THEME DEFAULT WILL USE ANDROMEDA THEME
 
+
     -- NOTE: custom configuration here
-    --require'tokyodark'.setup{
-    --transparent_background = false, -- set background to transparent
-    --gamma = 1.00, -- adjust the brightness of the theme
-    --styles = {
-    --comments = { italic = true }, -- style for comments
-    --keywords = { italic = true }, -- style for keywords
-    --identifiers = { italic = true }, -- style for identifiers
-    --functions = {}, -- style for functions
-    --variables = {}, -- style for variables
-    --},
-    --custom_highlights = {} or function(highlights, palette) return {} end, -- extend highlights
-    --custom_palette = {} or function(palette) return {} end, -- extend palette
-    --terminal_colors = true, -- enable terminal colors
-    --}
-    vim.g.gruvbox_italic = true
-    vim.g.gruvbox_transparent_bg = false
-    vim.g.gruvbox_contrast_dark = "medium"
-    -- vim.g.ayu = "mirage"
+    local onedark = require 'onedark'
+    onedark.setup({
+        style = "dark"
+    })
+    onedark.load()
+    
     vim.cmd([[autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE]])
     -- NOTE: configuration for neovide
     if vim.g.neovide then
@@ -109,6 +98,58 @@ config.init = function()
             },
         }
     }
+
+    -- NOTE: VIM CMP HIGHLIGHTS COLOR
+    -- Custom highlights for nvim-cmp styled for One Dark Pro
+    vim.api.nvim_set_hl(0, "Pmenu", { fg = "#ABB2BF", bg = "#282C34" })
+    vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#FFFFFF", bg = "#3E4452" })
+    
+    -- Abbreviation and matching highlights
+    vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#5C6370", bg = "NONE", strikethrough = true })
+    vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#61AFEF", bg = "NONE", bold = true })
+    vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#61AFEF", bg = "NONE", bold = true })
+    vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C678DD", bg = "NONE", italic = true })
+    
+    -- Field, Property, and Event
+    vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#E06C75", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#E06C75", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#E06C75", bg = "#3E4452" })
+    
+    -- Text, Enum, and Keyword
+    vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#98C379", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#98C379", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#98C379", bg = "#3E4452" })
+    
+    -- Constant, Constructor, and Reference
+    vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#E5C07B", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#E5C07B", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#E5C07B", bg = "#3E4452" })
+    
+    -- Function, Struct, Class, Module, and Operator
+    vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#C678DD", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#C678DD", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#C678DD", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#C678DD", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#C678DD", bg = "#3E4452" })
+    
+    -- Variable and File
+    vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#E06C75", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#E06C75", bg = "#3E4452" })
+    
+    -- Unit, Snippet, and Folder
+    vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#D19A66", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#D19A66", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#D19A66", bg = "#3E4452" })
+    
+    -- Method, Value, and Enum Member
+    vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#61AFEF", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#61AFEF", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#61AFEF", bg = "#3E4452" })
+    
+    -- Interface, Color, and Type Parameter
+    vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#56B6C2", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#56B6C2", bg = "#3E4452" })
+    vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#56B6C2", bg = "#3E4452" })
 
 end
 -- termguicolor

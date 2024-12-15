@@ -1,5 +1,6 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- some people think i am a stupid persons
 
 -- global setup nvim_lsp
 local nvim_lsp = require 'lspconfig'
@@ -45,17 +46,16 @@ cmp.setup {
             winhighlight = "Normal:Pmenu,FloatingBorder:Pmenu,Search:None",
             col_offset = -3,
             side_padding = 0,
-        }
+        },
     },
-
     mapping = {
-        ['<Tab>'] = function(fallback)
+        ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 --[[local entry = cmp.get_selected_entry()]]
                 --[[if not entry then]]
-                    --[[cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })]]
+                --[[cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })]]
                 --[[else]]
-                    --[[cmp.confirm()]]
+                --[[cmp.confirm()]]
                 --[[end]]
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -65,61 +65,65 @@ cmp.setup {
             else
                 fallback()
             end
-        end
+        end, {'i', 's', 'c'})
     },
-
     snippet = {
         expand = function(args)
             -- vim.fn["vsnip#anonymouse"](args.body)
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
-
     formatting = {
         fields = { 'kind', 'abbr', 'menu' },
-        format = lspkind.cmp_format({
-            with_text = true,
-            menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                luasnip = "[LuaSnip]",
-                nvim_lua = "[Lua]",
-                latex_symbols = "[Latex]",
-            }),
-            maxwidth = 50,
-            maxheight = 10,
-            before = function(entry, vim_item)
-                vim_item.menu = ({
-                    buffer = "[Buffer]",
+        format = function(entry, vim_item)
+            local kind = lspkind.cmp_format({
+                with_text = true,
+                mode = "symbol_text",
+                menu = ({
                     nvim_lsp = "[LSP]",
                     luasnip = "[LuaSnip]",
                     nvim_lua = "[Lua]",
                     latex_symbols = "[Latex]",
-                })[entry.source.name]
-                return vim_item
-            end
-        }),
+                    buffer = "[Buffer]",
+                }),
+                maxwidth = 64,
+                maxheight = 10,
+                before = function(entry, vim_item)
+                    vim_item.menu = ({
+                        nvim_lsp = "[LSP]",
+                        luasnip = "[LuaSnip]",
+                        nvim_lua = "[Lua]",
+                        latex_symbols = "[Latex]",
+                        buffer = "[Buffer]",
+                    })[entry.source.name]
+                    return vim_item
+                end
+            })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+            return kind
+        end,
     },
-
     sources = cmp.config.sources(
         {
-            -- { name = 'codeium' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
-            -- { name = 'vsnip' },
-            -- { name = 'ultisnips' },
             { name = 'nvim_lsp_signature_help' },
         },
         {
-            { name = 'buffer', option = {
-                get_bufnrs = function() return { vim.api.nvim_get_current_buf() } end
-            } },
+            {
+                name = 'buffer',
+                option = {
+                    get_bufnrs = function() return { vim.api.nvim_get_current_buf() } end
+                }
+            },
             { name = 'look', keyword_length = 2, option = { convert_case = true, loud = false } }
         }
     ),
-
     view = {
-        entries = 'native'
+        -- entries = 'native'
+        entries = { name = 'custom', selection_order = 'near_cursor' }
     },
 }
 
@@ -226,7 +230,7 @@ require 'lspsaga'.setup({
         -- this option only work in neovim 0.9
         title = true,
         devicon = true,
-        -- lines = { '┗', '┣', '┃', '━', '┏' },
+        lines = { '┗', '┣', '┃', '━', '┏' },
         -- border type can be single,double,rounded,solid,shadow.
         border = 'rounded',
         winblend = 0,
@@ -239,10 +243,17 @@ require 'lspsaga'.setup({
         diagnostic = '🐞',
         incoming = ' ',
         outgoing = ' ',
-        colors = {
+        -- colors = {
             --float window normal background color
             --normal_bg = '#282828',
             --black = '#1c1c19',
+        -- },
+        breadcrumbs = {
+            enable = false,
+        },
+        beacon = {
+            enable = true,
+            frequency = 7
         },
     }
 })
@@ -263,14 +274,14 @@ lspconfig.setup {
 
 -- automatic setup
 lspconfig.setup_handlers {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function (server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {}
-        end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
 }
 
 -- configuration for dart
