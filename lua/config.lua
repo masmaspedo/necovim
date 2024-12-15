@@ -25,7 +25,7 @@ config.init = function()
         style = "dark"
     })
     onedark.load()
-    
+
     vim.cmd([[autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE]])
     -- NOTE: configuration for neovide
     if vim.g.neovide then
@@ -61,38 +61,39 @@ config.init = function()
     bc.Setup {
         -- TODO : set custom tags
         tags = {
+
             {
                 name = "TODO",
-                fg = "#fbf1c7",
-                bg = "#458588",
+                fg = "#282C34",  -- Background
+                bg = "#E5C07B",  -- Light Yellow
                 bold = true,
                 virtual_text = "",
             },
             {
                 name = "FIX",
-                fg = "#fbf1c7",
-                bg = "#cc241d",
+                fg = "#282C34",  -- Background
+                bg = "#E06C75",  -- Light Red
                 bold = true,
                 virtual_text = "",
             },
             {
                 name = "BUG",
-                fg = "#fbf1c7",
-                bg = "#fb4934",
+                fg = "#282C34",  -- Background
+                bg = "#BE5046",  -- Darker Red
                 bold = true,
                 virtual_text = "",
             },
             {
                 name = "NOTE",
-                fg = "#fbf1c7",
-                bg = "#689d62",
+                fg = "#282C34",  -- Background
+                bg = "#98C379",  -- Light Green
                 bold = true,
                 virtual_text = "",
             },
             {
                 name = "WARNING",
-                fg = "#fbf1c7",
-                bg = "#d79921",
+                fg = "#282C34",  -- Background
+                bg = "#D19A66",  -- Orange
                 bold = true,
                 virtual_text = "",
             },
@@ -103,49 +104,49 @@ config.init = function()
     -- Custom highlights for nvim-cmp styled for One Dark Pro
     vim.api.nvim_set_hl(0, "Pmenu", { fg = "#ABB2BF", bg = "#282C34" })
     vim.api.nvim_set_hl(0, "PmenuSel", { fg = "#FFFFFF", bg = "#3E4452" })
-    
+
     -- Abbreviation and matching highlights
     vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#5C6370", bg = "NONE", strikethrough = true })
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#61AFEF", bg = "NONE", bold = true })
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#61AFEF", bg = "NONE", bold = true })
     vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C678DD", bg = "NONE", italic = true })
-    
+
     -- Field, Property, and Event
     vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#E06C75", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#E06C75", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#E06C75", bg = "#3E4452" })
-    
+
     -- Text, Enum, and Keyword
     vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#98C379", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#98C379", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#98C379", bg = "#3E4452" })
-    
+
     -- Constant, Constructor, and Reference
     vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#E5C07B", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#E5C07B", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#E5C07B", bg = "#3E4452" })
-    
+
     -- Function, Struct, Class, Module, and Operator
     vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#C678DD", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#C678DD", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#C678DD", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#C678DD", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#C678DD", bg = "#3E4452" })
-    
+
     -- Variable and File
     vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#E06C75", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#E06C75", bg = "#3E4452" })
-    
+
     -- Unit, Snippet, and Folder
     vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#D19A66", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#D19A66", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#D19A66", bg = "#3E4452" })
-    
+
     -- Method, Value, and Enum Member
     vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#61AFEF", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#61AFEF", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#61AFEF", bg = "#3E4452" })
-    
+
     -- Interface, Color, and Type Parameter
     vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#56B6C2", bg = "#3E4452" })
     vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#56B6C2", bg = "#3E4452" })
