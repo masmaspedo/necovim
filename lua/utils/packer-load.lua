@@ -31,7 +31,7 @@ load.core = {
     { 'vimwiki/vimwiki' }, -- wiki plugins use as notes
     { 
         'lukas-reineke/indent-blankline.nvim', 
-        -- requires = { 'HiPhish/rainbow-delimiters.nvim' }
+        requires = { 'HiPhish/rainbow-delimiters.nvim' }
     }, -- indent blank line
     { 'matze/vim-move' }, -- move line
     { 'francoiscabrol/ranger.vim' }, -- vim ranger

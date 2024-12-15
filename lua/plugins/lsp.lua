@@ -40,6 +40,7 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 local cmp = require 'cmp'
+local cmp_higlight = require 'cmp.utils.highlight'
 cmp.setup {
     window = {
         completion = {
@@ -54,8 +55,8 @@ cmp.setup {
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jumpable()
-            elseif has_words_before() then
-                cmp.complete()
+            --elseif has_words_before() then
+                --cmp.complete()
             
             else
                 fallback()
@@ -66,8 +67,8 @@ cmp.setup {
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jumpable()
-            elseif has_words_before() then
-                cmp.complete()
+            --elseif has_words_before() then
+                --cmp.complete()
             else
                 fallback()
             end
@@ -77,8 +78,8 @@ cmp.setup {
                 cmp.select_prev_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jumpable()
-            elseif has_words_before() then
-                cmp.complete()
+            --elseif has_words_before() then
+                --cmp.complete()
             else
                 fallback()
             end
@@ -103,7 +104,7 @@ cmp.setup {
                     nvim_lua = "[Lua]",
                     latex_symbols = "[Latex]",
                 }),
-                maxwidth = 64,
+                maxwidth = 50,
                 maxheight = 10,
                 before = function(entry, vim_item)
                     vim_item.menu = ({
@@ -116,9 +117,9 @@ cmp.setup {
                     return vim_item
                 end
             })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = false })
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "    (" .. (strings[2] or "") .. ")"
+            kind.menu = "    [" .. (strings[2] or "") .. ")"
             return kind
         end,
     },
@@ -127,8 +128,6 @@ cmp.setup {
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
             { name = 'nvim_lsp_signature_help' },
-        },
-        {
             {
                 name = 'buffer',
                 option = {
@@ -138,10 +137,10 @@ cmp.setup {
             { name = 'look', keyword_length = 2, option = { convert_case = true, loud = false } }
         }
     ),
-    view = {
+    -- view = {
         -- entries = 'native'
-        entries = { name = 'custom', selection_order = 'near_cursor' }
-    },
+        -- entries = { name = 'custom', selection_order = 'near_cursor' }
+    -- },
 }
 
 cmp.setup.cmdline('/', {

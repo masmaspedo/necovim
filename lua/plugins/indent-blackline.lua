@@ -24,7 +24,7 @@ hooks.register(
     end
 )
 
--- vim.g.rainbow_delimiters = { highlight = highlight }
+vim.g.rainbow_delimiters = { highlight = highlight }
 ibl.setup {
     exclude = {
         -- hide indent line on dashboard

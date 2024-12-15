@@ -5,7 +5,6 @@ function C.init(N, c)
     if not packer.bootstrap then
         local wmap = require 'which-key'.register
         -- intitizlie configs
-        c.init()
         if c.colorscheme then
             N.cmd('colorscheme ' .. c.colorscheme)
         end
@@ -19,6 +18,7 @@ function C.init(N, c)
                 ext = c.wiki.extension
             } }
         end
+        c.init()
     end
     N.opt.termguicolors = c.termguicolors
     N.opt.fsync = c.fsync
