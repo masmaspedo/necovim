@@ -3,9 +3,10 @@ return {
         require 'plugins.autopair'
         require 'plugins.dashboard'
         require 'plugins.buffersline'
-        require 'plugins.lualine'
         require 'plugins.colorizer'
         require 'plugins.lsp'
+        require 'plugins.codeium'
+        require 'plugins.lualine'
         require 'plugins.smoothscroll'
         require 'plugins.moveline'
         require 'plugins.nvim-tree'
@@ -17,8 +18,8 @@ return {
         require 'plugins.toggleterms'
         require 'plugins.treesitter'
         require 'plugins.whichkey'
-        require 'plugins.codeium'
         require 'plugins.nvim-ts-autotag'
         require 'plugins.zen'
     end
 }
+

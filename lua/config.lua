@@ -23,6 +23,9 @@ config.init = function()
         style = "dark"
     }
     onedark.load()
+    -- make a function to add number 
+    function add_somenumber(a, b)
+    end
 
     -- NOTE : SET CMP COLOR
     vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3E4451", fg = "NONE" })
@@ -33,13 +36,15 @@ config.init = function()
     vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82AAFF", bg = "NONE", bold = true })
     vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
 
+    vim.api.nvim_set_hl(0, "CmpItemKindCodeium", { bg = "#56B6C2", fg = "#EED8DA", bold = true })
+
     vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#EED8DA", bg = "#B5585F" })
     vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#EED8DA", bg = "#B5585F" })
     vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#EED8DA", bg = "#B5585F" })
 
     vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#C3E88D", bg = "#9FBD73" })
     vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#C3E88D", bg = "#9FBD73" })
-    vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#C3E88D", bg = "#9FBD73" })
+    vim.api.nvim_set_hl(0, "cmpItemKindKeyword", { fg = "#c3e88d", bg = "#9fbd73" })
 
     vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#FFE082", bg = "#D4BB6C" })
     vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#FFE082", bg = "#D4BB6C" })
@@ -198,14 +203,12 @@ config.keybind = function(map, wmap)
     map('n', '<C-a>', ':-<CR>', { silent = true, noremap = true })
     map('n', '<C-x>', ':+<CR>', { silent = true, noremap = true })
     -- codeactions
-    map('n', 'cf', ':Lspsaga lsp_finder<CR>', { silent = true, noremap = true })
+    map('n', 'cf', ':Lspsaga finder<CR>', { silent = true, noremap = true })
     map('n', 'ca', ':Lspsaga code_action<CR>', { silent = true, noremap = true })
     map('n', 'cd', ':Lspsaga hover_doc<CR>', { silent = true, noremap = true })
     map('n', 'cs', ':Lspsaga show_line_diagnostics<CR>', { silent = true, noremap = true })
-    map('n', 'cz', ':Lspsaga preview_definition<CR>', { silent = true, noremap = true })
+    map('n', 'cz', ':Lspsaga peek_definition<CR>', { silent = true, noremap = true })
     map('n', 'cg', ':Lspsaga goto_definition<CR>', { silent = true, noremap = true })
-    map('n', 'cj', ':Lspsaga jump_to_implementation<CR>', { silent = true, noremap = true })
-    -- ranger
     map('n', '<leader>dr', ':Ranger<CR>', { silent = true, noremap = true })
     -- calendar
     map('n', '<leader>cal', ':Calendar<CR>', { silent = true, noremap = true })

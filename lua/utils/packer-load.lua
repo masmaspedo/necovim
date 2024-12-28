@@ -45,8 +45,14 @@ load.core = {
     { 'natecraddock/sessions.nvim', requires = { 'rcarriga/nvim-notify' } }, -- session manager
     { 'j-hui/fidget.nvim', branch = 'legacy' }, -- Eye candy for the impatient
     { 'jceb/vim-orgmode', requires = { 'tpope/vim-speeddating' } }, -- Org Mode
-    { 'windwp/nvim-ts-autotag' }, -- autoclose tag
-    -- copilot alternative
+    {
+        'windwp/nvim-ts-autotag',
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+    }, -- autoclose tag
+    { 'Exafunction/codeium.nvim' },-- copilot alternative
     {
         'akinsho/flutter-tools.nvim',
         requires = {

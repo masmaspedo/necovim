@@ -5,30 +5,31 @@
 local lualine = require 'lualine'
 
 --local colors = {
-  --black        = '#282828',
-  --white        = '#ebdbb2',
-  --red          = '#fb4934',
-  --green        = '#b8bb26',
-  --blue         = '#83a598',
-  --yellow       = '#fe8019',
-  --gray         = '#a89984',
-  --darkgray     = '#3c3836',
-  --lightgray    = '#504945',
-  --inactivegray = '#7c6f64',
+--black        = '#282828',
+--white        = '#ebdbb2',
+--red          = '#fb4934',
+--green        = '#b8bb26',
+--blue         = '#83a598',
+--yellow       = '#fe8019',
+--gray         = '#a89984',
+--darkgray     = '#3c3836',
+--lightgray    = '#504945',
+--inactivegray = '#7c6f64',
 --}
 
 local colors = {
-  black        = '#282c34',  -- One Dark's primary background color
-  white        = '#abb2bf',  -- Lighter text color
-  red          = '#e06c75',  -- One Dark red
-  green        = '#98c379',  -- One Dark green
-  blue         = '#61afef',  -- One Dark blue
-  yellow       = '#e5c07b',  -- One Dark yellow
-  gray         = '#5c6370',  -- One Dark gray
-  darkgray     = '#2c323c',  -- Darker background color
-  lightgray    = '#3e4451',  -- Light gray text color
-  inactivegray = '#4b5263',  -- Dimmed elements or inactive UI elements
+    black        = '#282c34',  -- One Dark's primary background color
+    white        = '#abb2bf',  -- Lighter text color
+    red          = '#e06c75',  -- One Dark red
+    green        = '#98c379',  -- One Dark green
+    blue         = '#61afef',  -- One Dark blue
+    yellow       = '#e5c07b',  -- One Dark yellow
+    gray         = '#5c6370',  -- One Dark gray
+    darkgray     = '#2c323c',  -- Darker background color
+    lightgray    = '#3e4451',  -- Light gray text color
+    inactivegray = '#4b5263',  -- Dimmed elements or inactive UI elements
 }
+
 
 local conditions = {
     buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
@@ -173,6 +174,25 @@ ins_left {
 -- for lualine it's any number greater then 2
 ins_left { function() return '%=' end }
 
+--ins_right {
+    --function()
+        --local status = require('codeium.virtual_text').status()
+        --print(status.state)
+        --if status.state == 'idle' then
+            --return 'Idle'
+        --end
+        --if status.state == 'waiting' then
+            --return 'Waiting'
+        --end
+        --if status.state == 'completions' and status.total > 0 then
+            --return string.format('%d/%d', status.current, status.total)
+        --end
+        --return 'Disabled'
+    --end,
+    --icon = '󱚟 ',
+    --color = { fg = colors.yellow }
+--}
+
 ins_right {
     -- Lsp server name .
     function()
@@ -257,3 +277,7 @@ ins_right {
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
+
+require('codeium.virtual_text').set_statusbar_refresh(function()
+    require('lualine').refresh()
+end)

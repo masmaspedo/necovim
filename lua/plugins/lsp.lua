@@ -1,33 +1,21 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
--- some people think i am a stupid persons
 
 -- global setup nvim_lsp
 local nvim_lsp = require 'lspconfig'
 
+-- create a function to multiple number
+
 -- disable copilot if detected
 if vim.api.nvim_eval("exists('g:necovim_disable_copilot')") == 1 then
     if vim.api.nvim_eval("g:necovim_disable_lsp_copilot") == 1 then
-        vim.cmd(":Codeium Disable")
+        -- vim.cmd(":Codeium Disable")
     end
+    -- vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#FF0000" })
 end
 
-local on_attach = function(client, bufnr)
-    if vim.api.nvim_eval("exists('g:necovim_disable_lsp_autoformat')") == 1 then
-        if vim.api.nvim_eval("g:necovim_disable_lsp_autoformat") == 1 then
-            return
-        end
-    else
-        local format = require 'lsp-format'
-        format.setup {
-            typescript = { tab_width = 4 },
-            yaml = { tab_width = 2 },
-            dart = { tab_width = 2 },
-            go = { tab_width = 4 },
-        }
-        format.on_attach(client)
-    end
-end
+-- create a some function to do + math
+
 -- lspkind
 local lspkind = require 'lspkind'
 lspkind.init {}
@@ -55,9 +43,8 @@ cmp.setup {
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jumpable()
-            --elseif has_words_before() then
-                --cmp.complete()
-            
+            elseif has_words_before() then
+                cmp.complete()
             else
                 fallback()
             end
@@ -67,8 +54,8 @@ cmp.setup {
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jumpable()
-            --elseif has_words_before() then
-                --cmp.complete()
+            elseif has_words_before() then
+                cmp.complete()
             else
                 fallback()
             end
@@ -78,12 +65,13 @@ cmp.setup {
                 cmp.select_prev_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jumpable()
-            --elseif has_words_before() then
-                --cmp.complete()
+            elseif has_words_before() then
+                cmp.complete()
             else
                 fallback()
             end
         end, {'i', 's', 'c'}),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     snippet = {
         expand = function(args)
@@ -98,6 +86,7 @@ cmp.setup {
                 with_text = true,
                 mode = "symbol_text",
                 menu = ({
+                    codeium = "[Codeium]",
                     buffer = "[Buffer]",
                     nvim_lsp = "[LSP]",
                     luasnip = "[LuaSnip]",
@@ -107,7 +96,11 @@ cmp.setup {
                 maxwidth = 50,
                 maxheight = 10,
                 before = function(entry, vim_item)
+                    if entry.source.name == 'codeium' then
+                        vim_item.kind = string.format('%s %s', "󱚝", "AI")
+                    end
                     vim_item.menu = ({
+                        codeium = "[Codeium]",
                         buffer = "[Buffer]",
                         nvim_lsp = "[LSP]",
                         luasnip = "[LuaSnip]",
@@ -125,6 +118,7 @@ cmp.setup {
     },
     sources = cmp.config.sources(
         {
+            { name = 'codeium' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
             { name = 'nvim_lsp_signature_help' },
@@ -141,6 +135,9 @@ cmp.setup {
         -- entries = 'native'
         entries = { name = 'custom', selection_order = 'near_cursor' }
     },
+    experimental = {
+        ghost_text = true
+    }
 }
 
 cmp.setup.cmdline('/', {
@@ -154,90 +151,15 @@ cmp.setup.cmdline('/', {
 })
 
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({ { name = 'path' }, { name = 'cmdline' } }),
+    sources = cmp.config.sources({ 
+        { name = 'path' },
+        { name = 'cmdline' }
+    }),
     view = {
         -- entries = { name = 'native', separator = '|' }
         entries = { name = 'custom', selection_order = 'near_cursor' }
     }
 })
-
-local resolved = nil
-local function get_kind(colors)
-    if resolved then
-        return resolved
-    end
-    local kind = {
-        [1] = { 'File', ' ', colors.white },
-        [2] = { 'Module', ' ', colors.blue },
-        [3] = { 'Namespace', ' ', colors.orange },
-        [4] = { 'Package', ' ', colors.purple },
-        [5] = { 'Class', ' ', colors.purple },
-        [6] = { 'Method', ' ', colors.purple },
-        [7] = { 'Property', ' ', colors.cyan },
-        [8] = { 'Field', ' ', colors.yellow },
-        [9] = { 'Constructor', ' ', colors.blue },
-        [10] = { 'Enum', '了', colors.green },
-        [11] = { 'Interface', ' ', colors.orange },
-        [12] = { 'Function', ' ', colors.purple },
-        [13] = { 'Variable', ' ', colors.blue },
-        [14] = { 'Constant', ' ', colors.cyan },
-        [15] = { 'String', ' ', colors.green },
-        [16] = { 'Number', ' ', colors.green },
-        [17] = { 'Boolean', ' ', colors.orange },
-        [18] = { 'Array', ' ', colors.blue },
-        [19] = { 'Object', ' ', colors.orange },
-        [20] = { 'Key', ' ', colors.red },
-        [21] = { 'Null', ' ', colors.red },
-        [22] = { 'EnumMember', ' ', colors.green },
-        [23] = { 'Struct', ' ', colors.purple },
-        [24] = { 'Event', ' ', colors.purple },
-        [25] = { 'Operator', ' ', colors.green },
-        [26] = { 'TypeParameter', ' ', colors.green },
-        -- ccls
-        [252] = { 'TypeAlias', ' ', colors.green },
-        [253] = { 'Parameter', ' ', colors.blue },
-        [254] = { 'StaticMethod', 'ﴂ ', colors.orange },
-        [255] = { 'Macro', ' ', colors.red },
-        -- for completion sb microsoft!!!
-        [300] = { 'Text', ' ', colors.green },
-        [301] = { 'Snippet', ' ', colors.blue },
-        [302] = { 'Folder', ' ', colors.yellow },
-        [303] = { 'Unit', ' ', colors.cyan },
-        [304] = { 'Value', ' ', colors.blue },
-    }
-
-    if not vim.tbl_isempty(ui.kind) then
-        local function find_index_by_type(k)
-            for index, opts in pairs(kind) do
-                if opts[1] == k then
-                    return index
-                end
-            end
-            return nil
-        end
-
-        for k, v in pairs(ui.kind) do
-            local index = find_index_by_type(k)
-            if not index then
-                vim.notify('[lspsaga.nvim] not found kind in default')
-                return
-            end
-            if type(v) == 'table' then
-                kind[index][2], kind[index][3] = unpack(v)
-            elseif type(v) == 'string' then
-                kind[index][2] = v
-            else
-                vim.notify('[Lspsaga.nvim] value must be string or table')
-            end
-        end
-    end
-
-    resolved = function()
-        return kind
-    end
-
-    return resolved
-end
 
 require 'lspsaga'.setup({
     ui = {
@@ -254,9 +176,9 @@ require 'lspsaga'.setup({
         expand = '',
         collapse = '  ',
         preview = ' ',
-        code_action = ' ',
+        code_action = '',
         actionfix = '󱢇 ',
-        code_action_prompt = { enable = true },
+        code_action_prompt = { enable = false },
         -- code_action = '💡',
         diagnostic = '  ',
         incoming = ' ',
@@ -287,7 +209,8 @@ require'mason'.setup {
 }
 local lspconfig = require'mason-lspconfig'
 lspconfig.setup {
-
+    ensure_installed = { 'lua_ls', 'ts_ls', 'pylsp', 'cssls', 'diagnosticls' },
+    automatic_installation = false
 }
 
 -- automatic setup
@@ -296,7 +219,22 @@ lspconfig.setup_handlers {
     -- and will be called for each installed server that doesn't have
     -- a dedicated handler.
     function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
+        if server_name == 'pylsp' then
+            require('lspconfig')[server_name].setup{
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                ignore = {'W391', 'E501', 'E302', 'W293'},
+                                maxLineLength = 100
+                            }
+                        }
+                    }
+                }
+            }
+        else
+            require('lspconfig')[server_name].setup {}
+        end
     end,
     -- Next, you can provide a dedicated handler for specific servers.
     -- For example, a handler override for the `rust_analyzer`:
