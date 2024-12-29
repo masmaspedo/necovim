@@ -175,27 +175,32 @@ require 'lspsaga'.setup({
         winblend = 0,
         expand = '',
         collapse = '  ',
-        preview = ' ',
         -- code_action = '',
+        preview = ' ',
         code_action = '',
         actionfix = '󱢇 ',
-        code_action_prompt = { enable = false },
+        code_action_prompt = { enable = true },
         -- code_action = '💡',
         diagnostic = '  ',
         incoming = ' ',
         outgoing = ' ',
+        warn_sign = ' ',
         colors = {
             --float window normal background color
             normal_bg = '#282828',
             black = '#1c1c19',
         },
-        breadcrumbs = {
-            enable = false,
-        },
         beacon = {
-            enable = false,
+            enable = true,
             frequency = 7
         },
+    },
+    symbol_in_winbar = {
+        enable = true,
+        separator = ' 󰄾 '
+    },
+    implementation = {
+        enable = true
     }
 })
 
