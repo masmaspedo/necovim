@@ -176,7 +176,8 @@ require 'lspsaga'.setup({
         expand = '',
         collapse = '  ',
         preview = ' ',
-        code_action = '',
+        -- code_action = '',
+        code_action = '',
         actionfix = '󱢇 ',
         code_action_prompt = { enable = false },
         -- code_action = '💡',
@@ -192,7 +193,7 @@ require 'lspsaga'.setup({
             enable = false,
         },
         beacon = {
-            enable = true,
+            enable = false,
             frequency = 7
         },
     }

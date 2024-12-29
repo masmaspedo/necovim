@@ -68,6 +68,8 @@ load.core = {
     end },
     -- add zen mode
     { 'folke/zen-mode.nvim' },
+    -- material icons
+    { 'DaikyXendo/nvim-material-icon', require = { 'nvim-tree/nvim-web-devicons' } }
 }
 
 

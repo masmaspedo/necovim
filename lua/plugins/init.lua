@@ -1,5 +1,6 @@
 return {
     function()
+        require 'plugins.material-icons'
         require 'plugins.autopair'
         require 'plugins.dashboard'
         require 'plugins.buffersline'
