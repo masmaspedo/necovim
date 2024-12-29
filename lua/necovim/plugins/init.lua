@@ -1,15 +1,5 @@
 local M = {}
 
-M.config = {
-    function()
-        require'necovim.plugins.nvim-tree'
-        require'necovim.plugins.git'
-        require'necovim.plugins.dashboard'
-        require'necovim.plugins.bufferline'
-        require'necovim.plugins.lualine'
-    end
-}
-
 M.core = {
     -- Core Plugins 
     { 'wbthomason/packer.nvim' }, -- core packer
@@ -27,8 +17,30 @@ M.core = {
     -- Developments 
     { 'tpope/vim-fugitive' }, -- git integration
     { 'lewis6991/gitsigns.nvim' }, -- git integration
+    { 'nvim-treesitter/nvim-treesitter' }, -- code highlighter
+    -- lsp yara yara
+    { 'j-hui/fidget.nvim', branch = "legacy" },
+    { 'Exafunction/codeium.nvim' }, -- AI Completion
+    { 'neovim/nvim-lspconfig' }, -- lspconfig
+    { 'hrsh7th/cmp-nvim-lsp' }, -- new completion
+    { 'hrsh7th/cmp-buffer' }, -- new completion
+    { 'hrsh7th/cmp-path' }, -- new completion
+    { 'hrsh7th/cmp-cmdline' }, -- new completion
+    { 'hrsh7th/nvim-cmp' }, -- new completion
+    { 'williamboman/mason-lspconfig.nvim' }, -- mason lsp config
+    { 'williamboman/mason.nvim' }, -- lsp auto installer
+    { 'onsails/lspkind-nvim' }, -- lsp kind
+    { 'lukas-reineke/lsp-format.nvim' }, -- autoformatter
+    { 'nvimdev/lspsaga.nvim' }, -- lsp saga
+    { 'L3MON4D3/LuaSnip' }, -- lua snippet
+    { 'saadparwaiz1/cmp_luasnip' }, -- cmp lua snippet
+    -- debuging yara yara..
+    { 'folke/trouble.nvim' }, -- trouble vim
+    { 'ray-x/lsp_signature.nvim' }, -- lsp signature
     -- Quality of Life 
+    { 'psliwka/vim-smoothie' }, -- smooth scroll
 }
+
 
 return M
 

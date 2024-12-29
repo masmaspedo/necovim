@@ -20,7 +20,7 @@ M.setup = function(cfg)
     M.collect_plugins(core_plugins)
     M.collect_plugins(cfg.plugins)
     packer.load(plugins_repo)
-    packer.config(require'necovim.plugins'.config)
+    packer.config(require'necovim.plugins.load')
 
     -- initialize configuration
     require'necovim.core.config'.init(packer, cfg)
