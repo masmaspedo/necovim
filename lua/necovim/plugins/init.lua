@@ -1,6 +1,4 @@
-local M = {}
-
-M.core = {
+return {
     -- Core Plugins 
     { 'wbthomason/packer.nvim' }, -- core packer
     -- Interface 
@@ -10,16 +8,19 @@ M.core = {
     { 'nvimdev/dashboard-nvim' },
     { 'hoob3rt/lualine.nvim' },
     { 'akinsho/bufferline.nvim' },
+    { 'HiPhish/rainbow-delimiters.nvim' }, -- rainbow delimiters
+    { 'lukas-reineke/indent-blankline.nvim' }, -- indentline
     -- Utilities 
     { 'nvim-tree/nvim-tree.lua' }, -- file tree
     { 'nvim-lua/plenary.nvim' }, -- async utilities
     { 'nvim-telescope/telescope.nvim' }, -- telescope
+    { 'windwp/nvim-autopairs' }, -- autopairs
+    { 'windwp/nvim-ts-autotag' }, -- ts autoclosetags
     -- Developments 
     { 'tpope/vim-fugitive' }, -- git integration
     { 'lewis6991/gitsigns.nvim' }, -- git integration
     { 'nvim-treesitter/nvim-treesitter' }, -- code highlighter
     -- lsp yara yara
-    { 'j-hui/fidget.nvim', branch = "legacy" },
     { 'Exafunction/codeium.nvim' }, -- AI Completion
     { 'neovim/nvim-lspconfig' }, -- lspconfig
     { 'hrsh7th/cmp-nvim-lsp' }, -- new completion
@@ -39,8 +40,6 @@ M.core = {
     { 'ray-x/lsp_signature.nvim' }, -- lsp signature
     -- Quality of Life 
     { 'psliwka/vim-smoothie' }, -- smooth scroll
+    { 'folke/todo-comments.nvim' }, -- todo comment
+    { 'folke/flash.nvim' }, -- flash
 }
-
-
-return M
-

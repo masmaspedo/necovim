@@ -2,16 +2,6 @@
 local lspkind = require'lspkind'
 lspkind.init{}
 
--- fidget lsp indicator
-local fidget = require'fidget'
-fidget.setup {
-    debug = {
-        logging = true,
-        strict = true,
-    }
-}
-
-
 -- setup ai codeium
 local codeium = require 'codeium'
 codeium.setup {

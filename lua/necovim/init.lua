@@ -1,5 +1,5 @@
 local M = {} local packer = require'necovim.core.packer'
-local core_plugins = require'necovim.plugins'.core
+local core_plugins = require'necovim.plugins'
 local plugins_repo = {}
 
 M.collect_plugins = function(plugins)
@@ -24,6 +24,7 @@ M.setup = function(cfg)
 
     -- initialize configuration
     require'necovim.core.config'.init(packer, cfg)
+    require'necovim.keybind'.bind(cfg)
 end
 
 return M

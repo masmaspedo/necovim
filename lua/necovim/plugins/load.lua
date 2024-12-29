@@ -8,5 +8,9 @@ return {
         require'necovim.plugins.lualine'
         require'necovim.plugins.treesitter'
         require'necovim.plugins.lsp'
+        require'necovim.plugins.indentline'
+        require'necovim.plugins.autopairs'
+        require'necovim.plugins.todo-comment'
+        require'necovim.plugins.flash'
     end
 }
