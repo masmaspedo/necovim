@@ -213,7 +213,7 @@ lspsaga.setup {
 local nvim_lspconfig = require'lspconfig'
 vim.diagnostic.config {
     virtual_text = {
-        prefix = '', -- Could be '●', '▎', 'x'
+        prefix = '●', -- Could be '●', '▎', 'x'
     }
 }
 local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }

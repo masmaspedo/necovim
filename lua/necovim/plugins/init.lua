@@ -2,7 +2,7 @@ return {
     -- Core Plugins 
     { 'wbthomason/packer.nvim' }, -- core packer
     -- Interface 
-    { 'catppuccin/nvim' }, -- default theme will be catpuccin for all necovim themes
+    { 'sho-87/kanagawa-paper.nvim' }, -- default theme will be catpuccin for all necovim themes
     { 'DaikyXendo/nvim-material-icon' }, -- icons
     { 'norcalli/nvim-colorizer.lua' }, -- colorizer
     { 'nvimdev/dashboard-nvim' },
@@ -42,4 +42,5 @@ return {
     { 'psliwka/vim-smoothie' }, -- smooth scroll
     { 'folke/todo-comments.nvim' }, -- todo comment
     { 'folke/flash.nvim' }, -- flash
+    { 'danymat/neogen' }, -- neogen for code docsgen
 }

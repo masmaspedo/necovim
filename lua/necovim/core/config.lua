@@ -4,13 +4,25 @@ local opt = vim.opt
 local cmd = vim.api.nvim_command
 local c = vim.cmd
 
-
 M.init = function(packer, config)
     if not packer.bootstrap then
         if config.colorscheme then
             cmd("colorscheme "..config.colorscheme)
         else
-            cmd("colorscheme catppuccin-mocha")
+            local kanagawa = require'kanagawa-paper'
+            kanagawa.setup {
+                undercurl = true,
+                transparent = false,
+                gutter = false,
+                dimInactive = true, -- disabled when transparent
+                terminalColors = true,
+                commentStyle = { italic = true },
+                functionStyle = { italic = true, bold = true },
+                keywordStyle = { italic = true, bold = true },
+                statementStyle = { italic = true, bold = true },
+                typeStyle = { italic = false },
+            }
+            cmd("colorscheme kanagawa-paper")
         end
     end
     -- default configuration

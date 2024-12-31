@@ -12,5 +12,6 @@ return {
         require'necovim.plugins.autopairs'
         require'necovim.plugins.todo-comment'
         require'necovim.plugins.flash'
+        require'necovim.plugins.neogen'
     end
 }

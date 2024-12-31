@@ -10,7 +10,6 @@ necovim.setup {
     -- set your plugins here
     plugins = {
     },
-    -- keybind
     bind = function(map)
         -- nerd Tree shortcut
         map('n', '<leader>nt', ':NvimTreeToggle<CR>', { silent = true, noremap = true })
@@ -66,5 +65,7 @@ necovim.setup {
         map('n', '<leader>;', ':ToggleTerm <CR>', { silent = true, noremap = true })
         -- Tagbar
         map('n', '<leader>tb', ':TagbarToggle <CR>', { silent = true, noremap = true })
+        -- neogen
+        map("n", "<leader>ng", ":lua require('neogen').generate()<CR>", { silent = true, noremap = true })
     end
 }
