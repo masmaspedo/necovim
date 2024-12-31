@@ -2,7 +2,7 @@ return {
     -- Core Plugins 
     { 'wbthomason/packer.nvim' }, -- core packer
     -- Interface 
-    { 'sho-87/kanagawa-paper.nvim' }, -- default theme will be catpuccin for all necovim themes
+    { 'rebelot/kanagawa.nvim' }, -- default theme will be catpuccin for all necovim themes
     { 'DaikyXendo/nvim-material-icon' }, -- icons
     { 'norcalli/nvim-colorizer.lua' }, -- colorizer
     { 'nvimdev/dashboard-nvim' },
@@ -10,6 +10,15 @@ return {
     { 'akinsho/bufferline.nvim' },
     { 'HiPhish/rainbow-delimiters.nvim' }, -- rainbow delimiters
     { 'lukas-reineke/indent-blankline.nvim' }, -- indentline
+    { 
+        'xiyaowong/transparent.nvim',
+        config=function()
+            require'transparent'.setup{}
+            -- enable transparent
+            vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
+        end
+
+    },
     -- Utilities 
     { 'nvim-tree/nvim-tree.lua' }, -- file tree
     { 'nvim-lua/plenary.nvim' }, -- async utilities

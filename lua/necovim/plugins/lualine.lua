@@ -18,17 +18,18 @@ local lualine = require 'lualine'
 --}
 
 local colors = {
-    black        = '#282c34',  -- One Dark's primary background color
-    white        = '#abb2bf',  -- Lighter text color
-    red          = '#e06c75',  -- One Dark red
-    green        = '#98c379',  -- One Dark green
-    blue         = '#61afef',  -- One Dark blue
-    yellow       = '#e5c07b',  -- One Dark yellow
-    gray         = '#5c6370',  -- One Dark gray
-    darkgray     = '#2c323c',  -- Darker background color
-    lightgray    = '#3e4451',  -- Light gray text color
-    inactivegray = '#4b5263',  -- Dimmed elements or inactive UI elements
+    black        = '#16161D',  -- Kanagawa's primary background color
+    white        = '#DCD7BA',  -- Lighter text color
+    red          = '#C34043',  -- Kanagawa Dragon red
+    green        = '#76946A',  -- Kanagawa Dragon green
+    blue         = '#7E9CD8',  -- Kanagawa Dragon blue
+    yellow       = '#DCA561',  -- Kanagawa Dragon yellow
+    gray         = '#727169',  -- Kanagawa Dragon gray
+    darkgray     = '#1F1F28',  -- Darker background color
+    lightgray    = '#2A2A37',  -- Light gray text color
+    inactivegray = '#54546D',  -- Dimmed elements or inactive UI elements
 }
+
 
 
 local conditions = {
@@ -47,7 +48,6 @@ local config = {
         -- Disable sections and component separators
         component_separators = "",
         section_separators = { left = "", right = "" },
-        theme = 'onedark',
     },
     sections = {
         -- these are to remove the defaults

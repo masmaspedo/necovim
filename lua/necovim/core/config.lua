@@ -9,7 +9,7 @@ M.init = function(packer, config)
         if config.colorscheme then
             cmd("colorscheme "..config.colorscheme)
         else
-            local kanagawa = require'kanagawa-paper'
+            local kanagawa = require'kanagawa'
             kanagawa.setup {
                 undercurl = true,
                 transparent = false,
@@ -21,8 +21,9 @@ M.init = function(packer, config)
                 keywordStyle = { italic = true, bold = true },
                 statementStyle = { italic = true, bold = true },
                 typeStyle = { italic = false },
+                theme = "dragon",
             }
-            cmd("colorscheme kanagawa-paper")
+            cmd("colorscheme kanagawa")
         end
     end
     -- default configuration
