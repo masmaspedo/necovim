@@ -1,7 +1,7 @@
 require 'gitsigns'.setup {
     signs_staged_enable = true,
     signcolumn = true,
-    word_diff = true,
+    word_diff = false,
     numhl = true,
     linehl = false,
     current_line_blame = true,
