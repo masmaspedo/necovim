@@ -2,6 +2,15 @@
 local lspkind = require'lspkind'
 lspkind.init{}
 
+local copilot = require'copilot'
+copilot.setup {
+    suggestion = { enabled = false, keymap = { accept = false } },
+    panel = { enabled = false }
+}
+
+local copilot_cmp = require'copilot_cmp'
+copilot_cmp.setup {}
+
 -- setup ai codeium
 local codeium = require 'codeium'
 codeium.setup {
@@ -84,6 +93,7 @@ cmp.setup {
                 with_text = true,
                 mode = "symbol_text",
                 menu = ({
+                    copilot = "[Copilot]",
                     codeium = "[Codeium]",
                     buffer = "[Buffer]",
                     nvim_lsp = "[LSP]",
@@ -97,7 +107,11 @@ cmp.setup {
                     if entry.source.name == 'codeium' then
                         vim_item.kind = string.format('%s %s', "󱚝", "AI")
                     end
+                    if entry.source.name == 'copilot' then
+                        vim_item.kind = string.format('%s %s', "", "Copilot")
+                    end
                     vim_item.menu = ({
+                        copilot = "[Copilot]",
                         codeium = "[Codeium]",
                         buffer = "[Buffer]",
                         nvim_lsp = "[LSP]",
@@ -116,6 +130,7 @@ cmp.setup {
     },
     sources = cmp.config.sources(
         {
+            { name = 'copilot' },
             { name = 'codeium' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },

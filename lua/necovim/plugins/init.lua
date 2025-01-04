@@ -15,7 +15,7 @@ return {
         config=function()
             require'transparent'.setup{}
             -- enable transparent
-            vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
+            -- vim.cmd([[autocmd BufEnter * ++once lua require("transparent").TransparentEnable]])
         end
 
     },
@@ -31,6 +31,8 @@ return {
     { 'nvim-treesitter/nvim-treesitter' }, -- code highlighter
     -- lsp yara yara
     { 'Exafunction/codeium.nvim' }, -- AI Completion
+    { 'zbirenbaum/copilot.lua' }, -- copilot lua
+    { 'zbirenbaum/copilot-cmp' }, -- copilot additions for cmp
     { 'neovim/nvim-lspconfig' }, -- lspconfig
     { 'hrsh7th/cmp-nvim-lsp' }, -- new completion
     { 'hrsh7th/cmp-buffer' }, -- new completion
